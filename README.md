@@ -6,6 +6,13 @@ Unlike traditional platforms, this system focuses on **context-aware and emotion
 
 ---
 
+#Project Review
+
+*Dashboard
+<img width="1815" height="873" alt="image" src="https://github.com/user-attachments/assets/58b7f550-cbbe-4031-a9aa-c594aa15c54c" />
+
+*Search Result
+<img width="1648" height="860" alt="image" src="https://github.com/user-attachments/assets/46023dfd-0fd9-496e-914f-d58a228b2b5d" />
 
 
 ## 🚀 Features
