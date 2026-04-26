@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe — Smart Music Recommender</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">VIBE</span>
+      </div>
+      <div class="header-tag">AI Music · Powered by NLP</div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero-label">YOUR MOOD. YOUR MUSIC.</p>
+      <h1 class="hero-title">What are you<br /><em>feeling</em> right now?</h1>
+      <p class="hero-sub">Describe your vibe, activity, or mood — we'll find the perfect soundtrack.</p>
+    </section>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <div class="search-box" id="searchBox">
+        <span class="search-icon">♪</span>
+        <input
+          id="userInput"
+          type="text"
+          placeholder="e.g. gym punjabi songs, feeling sad, study lofi…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="search-btn" id="searchBtn" onclick="getSongs()">
+          <span class="btn-text">Search</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Modes -->
+    <div class="modes-section">
+      <p class="modes-label">QUICK VIBES</p>
+      <div class="modes">
+        <button class="mode-pill" onclick="quickMode('gym punjabi workout songs', this)" data-mood="pump">
+          <span class="mode-emoji">🏋️</span>
+          <span>Gym</span>
+        </button>
+        <button class="mode-pill" onclick="quickMode('study lofi focus music', this)" data-mood="focus">
+          <span class="mode-emoji">📚</span>
+          <span>Study</span>
+        </button>
+        <button class="mode-pill" onclick="quickMode('relax calm peaceful music', this)" data-mood="calm">
+          <span class="mode-emoji">🌙</span>
+          <span>Relax</span>
+        </button>
+        <button class="mode-pill" onclick="quickMode('party dance banger songs', this)" data-mood="hype">
+          <span class="mode-emoji">🎉</span>
+          <span>Party</span>
+        </button>
+        <button class="mode-pill" onclick="quickMode('sad heartbreak emotional songs', this)" data-mood="sad">
+          <span class="mode-emoji">💔</span>
+          <span>Sad</span>
+        </button>
+        <button class="mode-pill" onclick="quickMode('travel road trip songs', this)" data-mood="road">
+          <span class="mode-emoji">🚗</span>
+          <span>Travel</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loadingState" class="loading-state hidden">
+      <div class="loading-bars">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="loading-text">Detecting your vibe<span class="dots">...</span></p>
+    </div>
+
+    <!-- Result Info Bar -->
+    <div id="infoBar" class="info-bar hidden">
+      <div class="info-item">
+        <span class="info-label">MOOD</span>
+        <span class="info-value" id="infoMood">—</span>
+      </div>
+      <div class="info-divider">·</div>
+      <div class="info-item">
+        <span class="info-label">ACTIVITY</span>
+        <span class="info-value" id="infoActivity">—</span>
+      </div>
+      <div class="info-divider">·</div>
+      <div class="info-item">
+        <span class="info-label">ENERGY</span>
+        <div class="energy-bar">
+          <div class="energy-fill" id="energyFill"></div>
+        </div>
+      </div>
+      <div class="info-divider">·</div>
+      <div class="info-item">
+        <span class="info-label">QUERY</span>
+        <span class="info-value query-text" id="infoQuery">—</span>
+      </div>
+    </div>
+
+    <!-- Songs Grid -->
+    <div id="songsGrid" class="songs-grid hidden"></div>
+
+    <!-- Error -->
+    <div id="errorState" class="error-state hidden">
+      <span class="error-icon">⚠</span>
+      <p>Could not connect to backend.<br/>Make sure Flask is running on port 5000.</p>
+      <code>python app.py</code>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Built with Flask · NLP · YouTube · ♥</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
